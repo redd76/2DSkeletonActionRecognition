@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(
     description="")
 parser.add_argument('--train_images', help='Path to training image.')
 parser.add_argument('--model', help='Specify model to train with (AlexNet|DenseNet|TwoStreamNet|SimpleCNNet|NNet)')
-parser.add_argument('--epochs', help='Number of epochs to run', default=10)
+parser.add_argument('--epochs', help='Number of epochs to run', default=50)
 parser.add_argument('--batch_size', help='Batch size', default=16)
 parser.add_argument('--useAllJoints', help='Joint number to use (True=25, False=14)', default=1)
 parser.add_argument('--dataset', help='Dataset to use (hmdb51|custom|all)')
@@ -27,7 +27,7 @@ parser.add_argument('--dataset', help='Dataset to use (hmdb51|custom|all)')
 args = parser.parse_args()
 
 
-test=True
+test = True
 
 if test:
     # fake user input

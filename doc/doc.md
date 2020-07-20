@@ -42,6 +42,13 @@ Damit sollte sich die Suche beschränken auf (u/f/l)_(cm/nm)_(fr/ba/le/ri)_(np1)
 
 ![Abbildung 1: Beispieldaten aus HMDB51](./images/exampleMotion.gif)
 
+Es gibt noch alternativen zur HMDB51-Datenbank die für dieses Projekt in Betracht gezogen werden solten.
+Da die Verarbeitung der Daten einige Zeit benötigt wurde die HMDB51 verwendet, aber zu empfehlen scheint
+die [NTU-RGB+D](http://rose1.ntu.edu.sg/Datasets/actionRecognition.asp). Dieses kann in akademischen Arbeiten
+frei verwendet werden, muss aber angefordert werden.
+
+![Abbildung 1: Beispieldaten aus HMDB51](./images/dataset_comparison.png)
+
 ## Vorverarbeitung der Daten
 
 ### OpenPose
@@ -49,7 +56,6 @@ Zur Vorverarbeitung der Daten wurde [OpenPose](https://github.com/CMU-Perceptual
 OpenPose erzeugt je nach verwendetem Model (BODY25) ein 2D-Skelett von maximal 25 Joints mit jeweils X und Z Koordinaten basierend auf dem Inputframe.(s. Abbildung 1)
 
 ![Abbildung 2: OpenPose BODY25 Keypoints Skelett](./images/keypoints_pose_25_openPose.png)
-
 
 ### Bewegung zu RGB
 
@@ -63,7 +69,10 @@ Positionen die Maximal- und Minimalwerte und nehmen dann das Zenter als Referenz
 Eine weitere Frage bleibt was man in für den Blauwert verwendet um die Daten zu verschlüsseln.Aubry et al vergleichen die Verwendung des Mean von der X und Y Koordinate sowie die Verwendung des Confidence-Wertes von OpenPose.
 Das Ergebniss zeigte, dass der Confidence-Wert ein vergleichsweise mehr Relevanz zur Klassifizierung der Bewegung hat. 
 
-![Abbildung 3: Motion to RGB Conversion](./images/exampleMotionToRGB.jpg)
+|Video Daten                          |RGB Image                            |
+|-------------------------------------|:-----------------------------------:|
+|![](./images/exampleMotion.gif)      |![](./images/exampleMotionToRGB.jpg)
+
 
 # Model
 
@@ -224,7 +233,7 @@ _________________________________________________________________
 
 ![Abbildung 9: Model Accuracy SimpleCNNet](./images/NeuralNet_modelLoss.png)
 
-#Nutzung des Projektes
+# Nutzung des Projektes
 
 Trainiere das Model anhand der gegebenen Bilddaten mit (60, 25, 3) als Shape.
 
