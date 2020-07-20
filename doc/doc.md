@@ -236,13 +236,14 @@ Trainiere das Model anhand der gegebenen Bilddaten mit (60, 25, 3) als Shape.
 ```bash
 python train.py --train_images ./data/train --model AlexNet --epochs 50 --batch_size 32 --useAllJoints 1 --dataset all
 ```
-
-|--train_images     |Path to training image.                                                        |
-|--model            |Specify model to train with (AlexNet|DenseNet|TwoStreamNet|SimpleCNNet|NNet)   |
-|--epochs           |Number of epochs to run (default 50)                                           |                    
-|--batch_size       |Batch size (default 16)                                                        |
-|--useAllJoints     |Joint number to use (True=25, False=14) (default 1)                            |
-|--dataset',        |Dataset to use (hmdb51|custom|all)')                                           |
+|Params           |Description                                                                    |
+|-----------------|:-----------------------------------------------------------------------------:|
+|train_images     |Path to training image.                                                        |
+|model            |Specify model to train with (AlexNet|DenseNet|TwoStreamNet|SimpleCNNet|NNet)   |
+|epochs           |Number of epochs to run (default 50)                                           |                    
+|batch_size       |Batch size (default 16)                                                        |
+|useAllJoints     |Joint number to use (True=25, False=14) (default 1)                            |
+|dataset',        |Dataset to use (hmdb51|custom|all)')                                           |
 
 
 Nutze das gegebene bekannte Model um dieses auf einem Video laufen zu lassen.
@@ -250,9 +251,10 @@ Nutze das gegebene bekannte Model um dieses auf einem Video laufen zu lassen.
 ```bash
 python run.py --train_images ./data/train --model AlexNet --epochs 50 --batch_size 32 --useAllJoints 1 --dataset all
 ```
-
-|--model_path     |Path to the model.                                                           |
-|--weight_path    |Path to the weights                                                          |
-|--video_path     |Path to the video.                                                           |                    
-|--model_type     |Name of the trained model. AlexNet|DenseNet|TwoStreamNet|SimpleCNNet|NNet    |
-|--output_path    |Path to write output video to.                                               |
+|Params         |Description                                                                  |
+|---------------|:---------------------------------------------------------------------------:|
+|model_path     |Path to the model.                                                           |
+|weight_path    |Path to the weights                                                          |
+|video_path     |Path to the video.                                                           |                    
+|model_type     |Name of the trained model. AlexNet|DenseNet|TwoStreamNet|SimpleCNNet|NNet    |
+|output_path    |Path to write output video to.                                               |
