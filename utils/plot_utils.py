@@ -1,7 +1,29 @@
 from matplotlib import pyplot as plt
 import numpy as np
 import os
+import json
+import io
 
+def get_model_summary(model):
+    stream = io.StringIO()
+    model.summary(print_fn=lambda x: stream.write(x + '\n'))
+    summary_string = stream.getvalue()
+    stream.close()
+    return summary_string
+
+def save_history_for_plot(history, score, model, output_path):
+    json_data = {}
+    json_data['accuracy'] = [float(val) for val in history.history['accuracy']]
+    json_data['val_accuracy'] = [float(val) for val in history.history['val_accuracy']]
+
+    json_data['loss'] = [float(val) for val in history.history['loss']]
+    json_data['val_loss'] = [float(val) for val in history.history['val_loss']]
+
+    json_data['score'] = [float(val) for val in score]
+    json_data['model_summary'] = get_model_summary(model)
+
+    with open(output_path, "w") as jfile:
+        json.dump(json_data, jfile)
 
 def plot_model_history(history):
     # list all data in history
@@ -42,7 +64,7 @@ def plot_model_history_and_save(history, h_path):
     plt.ylabel('loss')
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
-    plt.savefig(os.path.join(h_path, "model_loss.png"))
+    plt.savefig(os.path.join(h_path, "SimpleCNNet_modelLoss.png"))
     plt.clf()
 
 

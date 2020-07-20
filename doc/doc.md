@@ -57,11 +57,11 @@ OpenPose erzeugt je nach verwendetem Model (BODY25) ein 2D-Skelett von maximal 2
 
 ![Abbildung 2: OpenPose BODY25 Keypoints Skelett](./images/keypoints_pose_25_openPose.png)
 
-### Bewegung zu RGB
+### Erzeugung von Motion-Images
 
 Für ein Convolutional Neural Network müssen die Bewegungsdaten von dem gegebenen Skelett visualisiert werden.
 Nach Sedmidubsky et al können 3D-Bewegungsdaten nach Normalisierung der Joint Positionen und Orientierungen in ein RGB-Bild
-übertragen werden. In dem genannten Projekt beruhen die Normalisierungen jedoch auf einem konstanten Skelett. 
+übertragen werden in sogenannte Motion Images. In dem genannten Projekt beruhen die Normalisierungen jedoch auf einem konstanten Skelett. 
 D.h. alle Joints haben zu jedem Frame Daten. In diesem Projekt kann man nicht davon ausgehen, dass immer das gesamte Skelett erfasst wird. D.h. wir werden nicht in der Lage sein alle
 Joints in einen Raum zu transformieren (z.B. Hip).
 Eine Normalisierung des Skeletts soll anhand der BoundingBox für jedes Frame umgesetzt werden. Dabei errechnen wir anhand der vorhandenen
@@ -69,10 +69,9 @@ Positionen die Maximal- und Minimalwerte und nehmen dann das Zenter als Referenz
 Eine weitere Frage bleibt was man in für den Blauwert verwendet um die Daten zu verschlüsseln.Aubry et al vergleichen die Verwendung des Mean von der X und Y Koordinate sowie die Verwendung des Confidence-Wertes von OpenPose.
 Das Ergebniss zeigte, dass der Confidence-Wert ein vergleichsweise mehr Relevanz zur Klassifizierung der Bewegung hat. 
 
-|Video Daten                          |RGB Image                            |
-|-------------------------------------|:-----------------------------------:|
-|![](./images/exampleMotion.gif)      |![](./images/exampleMotionToRGB.jpg)
-
+|Video Daten                          |RGB Image                            | Frames | Joints |
+|-------------------------------------|:-----------------------------------:|:------:|:------:|
+|![](./images/exampleMotion.gif)      |![](./images/exampleMotionToRGB.jpg) |  60    |   25   |
 
 # Model
 
@@ -105,11 +104,9 @@ Trainable params: 31,188,213
 Non-trainable params: 0
 _________________________________________________________________
 
-
-
-![Abbildung 4: Model Accuracy SimpleCNNet](./images/AlexNet_modelAccuracy.png)
-
-![Abbildung 5: Model Accuracy SimpleCNNet](./images/AlexNet_modelLoss.png)
+|                                                                                |                                                                            | 
+|--------------------------------------------------------------------------------|:---------------------------------------------------------------------------|
+| ![Abbildung 4: Model Accuracy SimpleCNNet](./images/AlexNet_modelAccuracy.png) | ![Abbildung 5: Model Accuracy SimpleCNNet](./images/AlexNet_modelLoss.png) |
 
 ## DenseNet
 
@@ -136,10 +133,9 @@ Total params: 31,188,213
 Trainable params: 31,188,213
 Non-trainable params: 0
 _________________________________________________________________
-
-![Abbildung 4: Model Accuracy SimpleCNNet](./images/DenseNet_modelAccuracy.png)
-
-![Abbildung 5: Model Accuracy SimpleCNNet](./images/DenseNet_modelLoss.png)
+|                                                                                 |                                                                            |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| ![Abbildung 4: Model Accuracy SimpleCNNet](./images/DenseNet_modelAccuracy.png) | ![Abbildung 5: Model Accuracy SimpleCNNet](./images/DenseNet_modelLoss.png)|
 
 
 ## Simple Convolutional Network
@@ -157,9 +153,9 @@ Trainable params: 4,860,165
 Non-trainable params: 0
 _________________________________________________________________
 
-![Abbildung 4: Model Accuracy SimpleCNNet](./images/SimpleCNNet_modelAccuracy.png)
-
-![Abbildung 5: Model Accuracy SimpleCNNet](./images/SimpleCNNet_modelLoss.png)
+|                                                                                   |                                                                              |                                     
+|-----------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|
+|![Abbildung 4: Model Accuracy SimpleCNNet](./images/SimpleCNNet_modelAccuracy.png) |![Abbildung 5: Model Accuracy SimpleCNNet](./images/SimpleCNNet_modelLoss.png)|
 
 
 ## TwoStreamCNNetwork
@@ -207,10 +203,9 @@ Total params: 260,805
 Trainable params: 260,357
 Non-trainable params: 448
 __________________________________________________________________________________________________
-
-![Abbildung 6: Model Accuracy SimpleCNNet](./images/TwoStreamNet_modelAccuracy.png)
-
-![Abbildung 7: Model Accuracy SimpleCNNet](./images/TwoStreamCNNet_modelLoss.png)
+|                                                                                    |                                                                                  | 
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|![Abbildung 6: Model Accuracy SimpleCNNet](./images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy SimpleCNNet](./images/TwoStreamCNNet_modelLoss.png)|
 
 ## NeuralNet
 
@@ -228,11 +223,19 @@ Total params: 588,869
 Trainable params: 588,869
 Non-trainable params: 0
 _________________________________________________________________
+|                                                                                 |                                                                              | 
+|---------------------------------------------------------------------------------|:----------------------------------------------------------------------------:| 
+|![Abbildung 8: Model Accuracy SimpleCNNet](./images/NeuralNet_modelAccuracy.png) | ![Abbildung 9: Model Accuracy SimpleCNNet](./images/NeuralNet_modelLoss.png) |
 
-![Abbildung 8: Model Accuracy SimpleCNNet](./images/NeuralNet_modelAccuracy.png)
+# Auswertung
 
-![Abbildung 9: Model Accuracy SimpleCNNet](./images/NeuralNet_modelLoss.png)
-
+| Model         | Accuracy (in %)   |
+|---------------|:-----------------:|
+| AlexNet       |                   |
+| DenseNet      |                   |
+| SimpleCNNet   | 67.92             |
+| TwoStreamNet  |                   |
+| NNet          |                   |  
 # Nutzung des Projektes
 
 Trainiere das Model anhand der gegebenen Bilddaten mit (60, 25, 3) als Shape.

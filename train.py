@@ -14,6 +14,7 @@ from datagen.DataGenerator import DataGenerator
 import argparse
 from datetime import datetime
 import utils.model_utils as mutils
+import json
 
 parser = argparse.ArgumentParser(
     description="")
@@ -32,7 +33,8 @@ test = True
 if test:
     # fake user input
     args.train_images = r"./data/train/"
-    args.model = "SimpleCNNet"
+    args.model = "DenseNet"
+    args.epochs = 50
     args.useAllJoints = 1
     args.dataset = "all"
 
@@ -134,11 +136,10 @@ output_path = r"./data/model_output/{0}".format(current_time.strftime('%Y%m%d%H%
 if not os.path.exists(output_path):
     os.makedirs(output_path)
 mutils.save_model_to_json(os.path.join(output_path, "model.json"), os.path.join(output_path, "weights.hd5"), model)
-#score = model.evaluate(X_test, Y_test, verbose=0)
-#print('Test score:', score[0])
-#print('Test accuracy:', score[1])
+score = model.evaluate_generator(validation_generator)
+print('Test score:', score[0])
+print('Test accuracy:', score[1])
 
 plot_utils.plot_model_history_and_save(history, output_path)
-#plot_utils.plot_result_examples(model, X_test, y_test, img_rows, img_cols)
 
-print(model.summary())
+plot_utils.save_history_for_plot(history, score, model, os.path.join(output_path, 'history.json'))
