@@ -32,15 +32,10 @@ Des Weitern kann man anhand der Label MetaDaten ablesen.
 |PROPERTY                               |LABELS (ABBREVIATION)                                      |
 |---------------------------------------|:---------------------------------------------------------:|              
 |visible body parts                     |	head(h), upper body(u), full body (f), lower body(l)    |
-|_______________________________________|___________________________________________________________|
 |camera motion                          |	motion (cm), static (nm)                                |
-|_______________________________________|___________________________________________________________|
 |camera viewpoint                       |	Front (fr), back (ba), left(le), right(ri)              |
-|_______________________________________|___________________________________________________________|
 |number of people involved in the action|	Single (np1), two (np2), three (np3)                    |
-|_______________________________________|___________________________________________________________|
 |video quality                          |	good (goo), medium (med), ok (bad)                      |
-|_______________________________________|___________________________________________________________|
 
 In diesem Projekt sollten nur Daten verwendet, in der eine einzige Person vorkommt.
 Damit sollte sich die Suche beschränken auf (u/f/l)_(cm/nm)_(fr/ba/le/ri)_(np1)_(goo/med/bad).
