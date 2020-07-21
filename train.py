@@ -33,7 +33,7 @@ test = True
 if test:
     # fake user input
     args.train_images = r"./data/train/"
-    args.model = "DenseNet"
+    args.model = "AlexNet"
     args.epochs = 50
     args.useAllJoints = 1
     args.dataset = "all"

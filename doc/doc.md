@@ -205,7 +205,7 @@ Non-trainable params: 448
 __________________________________________________________________________________________________
 |                                                                                    |                                                                                  | 
 |------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-|![Abbildung 6: Model Accuracy SimpleCNNet](./images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy SimpleCNNet](./images/TwoStreamCNNet_modelLoss.png)|
+|![Abbildung 6: Model Accuracy SimpleCNNet](./images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy SimpleCNNet](./images/TwoStreamNet_modelLoss.png)|
 
 ## NeuralNet
 
@@ -232,10 +232,10 @@ _________________________________________________________________
 | Model         | Accuracy (in %)   |
 |---------------|:-----------------:|
 | AlexNet       |                   |
-| DenseNet      |                   |
+| DenseNet      | 70.72             |
 | SimpleCNNet   | 67.92             |
-| TwoStreamNet  |                   |
-| NNet          |                   |  
+| TwoStreamNet  | 69.73             |
+| NNet          | 62.66             |  
 # Nutzung des Projektes
 
 Trainiere das Model anhand der gegebenen Bilddaten mit (60, 25, 3) als Shape.

@@ -55,7 +55,7 @@ def plot_model_history_and_save(history, h_path):
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
-    plt.savefig(os.path.join(h_path, "model_accuracy.png"))
+    plt.savefig(os.path.join(h_path, "TwoStreamNet_modelAccuracy.png"))
     plt.clf()
     # summarize history for loss
     plt.plot(history.history['loss'])
