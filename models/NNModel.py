@@ -1,12 +1,15 @@
-from keras.models import Sequential, Model
-from keras.layers import Dropout, Convolution2D, MaxPooling2D, Flatten, Dense, Activation
-from keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPool2D, Permute, concatenate
-from keras.layers import InputLayer
-
 import numpy as np
+from keras.layers import Dense, InputLayer, Dropout
+import keras.optimizers
+
+from keras.models import Sequential
 
 
 class NNModel:
+    """
+    Simple fully connected Neural Network
+    Input images will be flattened to fit input size
+    """
     input_layer = 60 * 25 * 3
 
     def __init__(self, dim):
@@ -25,11 +28,14 @@ class NNModel:
         # TODO build your own model here
         model = Sequential()
         model.add(InputLayer(input_shape=self.load_inputshape()))
+        model.add(Dropout(.2, input_shape=self.load_inputshape()))
+        model.add(Dense(512, activation="relu"))
+        model.add(Dense(256, activation="relu"))
         model.add(Dense(128, activation="relu"))
-        model.add(Dense(64, activation="relu"))
-        model.add(Dense(64, activation="relu"))
         model.add(Dense(classes, activation="softmax"))
-        model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+        opt = keras.optimizers.Adam(lr=0.001)
+        #opt = keras.optimizers.SGD(lr=0.01, momentum=0.99)
+        model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
         return model
 
 

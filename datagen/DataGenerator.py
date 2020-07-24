@@ -10,7 +10,7 @@ class DataGenerator(Sequence):
     """
     ALEXNET = "AlexNet"
     DENSENET = "DenseNet"
-    SQUEEZENET = "SqueezeNet"
+    RESNET = "ResNet"
     TWOSTREAMNET = "TwoStreamNet"
     NNET = "NNet"
 
@@ -19,9 +19,10 @@ class DataGenerator(Sequence):
                  n_channels=1, n_classes=5, shuffle=True):
         """Initialization
         :param list_IDs: list of all 'label' ids to use in the generator
-        :param labels: list of image labels (file names)
-        :param image_path: path to images location
-        :param mask_path: path to masks location
+        :param m_input_data: list of image paths
+        :param labels: list of image labels
+        :param model: name of model
+        :param use_all_joints: define second dimension with number of joints (14, 25)
         :param to_fit: True to return X and y, False to return X only
         :param batch_size: batch size at each iteration
         :param dim: tuple indicating image dimension
@@ -48,6 +49,8 @@ class DataGenerator(Sequence):
         """Denotes the number of batches per epoch
         :return: number of batches per epoch
         """
+        # workaround to shuffle data
+        self.on_epoch_end()
         return int(np.floor(len(self.list_IDs) / self.batch_size))
 
     def __getitem__(self, index):
@@ -74,6 +77,7 @@ class DataGenerator(Sequence):
         """Updates indexes after each epoch
         """
         self.indexes = np.arange(len(self.list_IDs))
+        #print(len(self.list_IDs))
         if self.shuffle == True:
             np.random.shuffle(self.indexes)
 
@@ -92,12 +96,13 @@ class DataGenerator(Sequence):
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
+            #print(self.m_input_data[ID])
             img = self._load_image(self.m_input_data[ID])
             if not self.use_all_joints:
                 img = img[:, 0:14]
             elif self.model in [self.NNET]:
                 X[i,] = img.flatten()
-            elif self.model in [self.ALEXNET, self.DENSENET, self.SQUEEZENET]:
+            elif self.model in [self.ALEXNET, self.DENSENET, self.RESNET]:
                 img = DataGenerator.resize_img(img, self.dim)
                 X[i,] = img
             else:
@@ -143,19 +148,27 @@ class DataGenerator(Sequence):
 
     @staticmethod
     def resize_img(img, dim):
+        """
+        resize the image to fit dim
+        """
         rimg = cv2.resize(img, dsize=dim, interpolation=cv2.INTER_CUBIC)
         return rimg
 
     @staticmethod
     def image_to_net_input(img, model, dim):
+        """
+        Transform img to net input depending on model
+        for prediction
+        """
         img = img[:, 0:dim[1]]
         if model in [DataGenerator.NNET]:
             return img.flatten()
-        elif model in [DataGenerator.ALEXNET, DataGenerator.DENSENET, DataGenerator.SQUEEZENET]:
+        elif model in [DataGenerator.ALEXNET, DataGenerator.DENSENET, DataGenerator.RESNET]:
             img = DataGenerator.resize_img(img, dim)
             return img
-        if model == DataGenerator.TWOSTREAMNET:
-            shifted = np.roll(img, 1, 0)
-            shifted[-1] = img[-1]
-            return [img, shifted - img]
+        elif model in [DataGenerator.TWOSTREAMNET]:
+            T = np.empty(img.shape)
+            for i in range(1, img.shape[0]):
+                T[i,:,:] = img[i,:,:] - img[i-1,:,:]
+            return [img, T]
         return img

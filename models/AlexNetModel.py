@@ -2,10 +2,15 @@
 Reference taken from https://engmrk.com/alexnet-implementation-using-keras/
 """
 
-from keras.models import Sequential, Model
-from keras.layers import Dropout, Convolution2D, MaxPooling2D, Flatten, Dense, Activation
+from keras.layers import Dropout, Convolution2D, MaxPooling2D, Flatten, Dense
+from keras.models import Sequential
+
 
 class AlexNetModel:
+    """
+    Creates a model based on the AlexNet
+    Input image will be scaled to fit the input size of AlexNet
+    """
     img_rows, img_cols, n_channels = 256, 256, 3
 
     @staticmethod

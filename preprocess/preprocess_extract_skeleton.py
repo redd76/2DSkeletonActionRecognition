@@ -5,8 +5,9 @@ openpose_location = r"C:\Users\Phillip\Documents\beuth\2DSkeletonActionClassific
 
 def extract_skeleton_from(input_path, output_path, input_type='--video', write_images=None):
     os.chdir(openpose_location)
+    render_pose_value = 0 if not write_images else 2
     popen_args = ['../openpose/bin/OpenPoseDemo.exe', input_type, input_path, '--write_json', output_path, '--display', '0',
-         '--render_pose', '2', '--number_people_max', '1']
+         '--render_pose', str(render_pose_value), '--number_people_max', '1']
     if write_images is not None:
         popen_args.append('--write_images')
         popen_args.append(write_images)

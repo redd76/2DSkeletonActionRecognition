@@ -1,0 +1,1 @@
+https://github.com/CMU-Perceptual-Computing-Lab/openpose/releases/download/v1.6.0/openpose-1.6.0-binaries-win64-gpu-python-flir-3d_recommended.zip

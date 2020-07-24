@@ -1,9 +1,14 @@
-from keras.models import Sequential, Model
-from keras.layers import Dropout, Convolution2D, MaxPooling2D, Flatten, Dense, Activation
-from keras.layers import Input, Conv2D, BatchNormalization, LeakyReLU, MaxPool2D, Permute, concatenate
+import keras.optimizers
+from keras.layers import BatchNormalization
+from keras.layers import Convolution2D, Flatten, Dense, Dropout
+from keras.models import Sequential
 
 
 class CNNModel:
+    """
+    Simple CNN-Model with 2 convoltions and a top layer to classify
+    Convolution layers are normalized
+    """
     img_rows, img_cols, n_channels = 60, 25, 3
 
     def __init__(self, img_rows, img_cols):
@@ -21,13 +26,19 @@ class CNNModel:
     def load_model(self, classes=10):
         # TODO build your own model here
         model = Sequential()
-        model.add(Convolution2D(64, kernel_size=(3,3), activation="relu", input_shape=self.load_inputshape()))
-        model.add(Convolution2D(64, kernel_size=(3, 3), activation="relu"))
+        model.add(Dropout(.3, input_shape=self.load_inputshape()))
+        model.add(Convolution2D(512, kernel_size=(3,3), strides=(1,1), activation="relu", input_shape=self.load_inputshape()))
+        model.add(BatchNormalization())
+        model.add(Convolution2D(256, kernel_size=(3, 3), activation="relu"))
+        model.add(BatchNormalization())
         model.add(Flatten())
-        model.add(Dense(64, activation="relu"))
+        model.add(Dense(128, activation="relu"))
+        model.add(Dense(128, activation="relu"))
+        model.add(Dropout(.1))
         model.add(Dense(64, activation="relu"))
         model.add(Dense(classes, activation="softmax"))
-        model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+        opt = keras.optimizers.Adam(lr=0.00001)
+        model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
         return model
 
 
