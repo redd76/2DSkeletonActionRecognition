@@ -301,10 +301,10 @@ Total params: 260,805
 Trainable params: 260,357
 Non-trainable params: 448
 __________________________________________________________________________________________________
-|    classes   |                                                                                     |                                                                          | 
-|              |------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| stand/walk/sit/punch/wave      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss.png)|
-| stand/walk/sit      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy_cl3.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss_cl3.png)|
+|    classes                |                                                                             |                                      | 
+|---------------------------|:----------------------------------------------------------------------------|--------------------------------------|
+| stand/walk/sit/punch/wave |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy.png)    | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss.png)|
+| stand/walk/sit            |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy_cl3.png)| ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss_cl3.png)|
 
 # Results from Training the Network
 
