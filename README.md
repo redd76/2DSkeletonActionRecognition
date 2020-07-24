@@ -299,7 +299,8 @@ Non-trainable params: 448
 __________________________________________________________________________________________________
 |                                                                                    |                                                                                  | 
 |------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-|![Abbildung 6: Model Accuracy SimpleCNNet](doc/images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy SimpleCNNet](doc/images/TwoStreamNet_modelLoss.png)|
+|![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss.png)|
+|![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy_cl3.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss_cl3.png)|
 
 # Results from Training the Network
 
