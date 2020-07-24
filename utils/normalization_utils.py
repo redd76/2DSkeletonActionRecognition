@@ -4,6 +4,9 @@ def remap(value, maxInput, minInput, maxOutput, minOutput):
     return ((value - minInput) / (maxInput - minInput) ) * (maxOutput - minOutput) + minOutput
 
 def normalize_image(img):
+    """
+    Normalize the given image based on the bounding box
+    """
     #non_zero = img[np.any(img != [0, 0, 0], axis=None)]
     # put all joint positions relative to bounding box
     nimg = []
@@ -36,6 +39,9 @@ def normalize_image(img):
 
 
 def normalize_image_based_on_nose(img):
+    """
+    normalize the given image based on the nose point
+    """
     non_zero_indices = [i for i in range(img.shape[0]) if np.all(img[i, 0, :] != [0,0,0]) and np.all(np.isfinite(img[i, 0, :]))]
     non_zero = img[non_zero_indices, :, :]
     if non_zero.shape[0] == 0:
@@ -43,7 +49,6 @@ def normalize_image_based_on_nose(img):
     # put all joint positions relative to bounding box
     nimg = np.empty(img.shape)
     for i in range(img.shape[0]):
-        nframe = []
         frame = img[i, :, :]
         non_zero = frame[np.any(frame != [0, 0, 0], axis=-1)]
         non_zero = non_zero[np.all(np.isfinite(non_zero), axis=-1)]
@@ -56,8 +61,6 @@ def normalize_image_based_on_nose(img):
         min_x = np.amin(non_zero[:,0]) - ref_x
         max_y = np.amax(non_zero[:, 1]) - ref_y
         min_y = np.amin(non_zero[:, 1]) - ref_y
-        scale_coord_x = max_x - min_x
-        scale_coord_y = max_y - min_y
         for j in range(1, img.shape[1]):
             point = np.empty(3)
             point[0:2] = img[i, j, 0:2] - np.asarray([ref_x, ref_y])
@@ -73,6 +76,9 @@ def normalize_image_based_on_nose(img):
     return nimg
 
 def normalize_frame(frame):
+    """
+    normalize the given frame based on the bounding box
+    """
     # filter zero values
     is_all_zero = np.all((frame == [0, 0, 0]))
     if is_all_zero:

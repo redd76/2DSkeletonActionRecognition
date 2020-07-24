@@ -23,7 +23,7 @@ parser.add_argument('--output_path', help='Path to write output video to.')
 args = parser.parse_args()
 
 # debug to test the functionalities
-debug = True
+debug = False
 if debug:
     # fake user input
     args.video_path = os.path.abspath(r"./data/test/test06.mp4")
@@ -42,14 +42,11 @@ classifications = ["stand",
                    "punch"]
 
 # create temp directories to store data
-#json_tmp_dir = tempfile.mkdtemp()
-#processed_tmp_dir = tempfile.mkdtemp()
-#json_tmp_dir = r"C:\Users\Phillip\AppData\Local\Temp\tmps6t1d_lm"
-#processed_tmp_dir = r"C:\Users\Phillip\AppData\Local\Temp\tmpz8m8sufc"
-json_tmp_dir = r"C:\Users\Phillip\AppData\Local\Temp\tmpd5_xk_gl"
-processed_tmp_dir = r"C:\Users\Phillip\AppData\Local\Temp\tmpx2n84izk"
+json_tmp_dir = tempfile.mkdtemp()
+processed_tmp_dir = tempfile.mkdtemp()
+
 # extract data with OpenPose and save to tmp dir
-#pre.extract_skeleton_from(args.video_path, json_tmp_dir, '--video', write_images=processed_tmp_dir)
+pre.extract_skeleton_from(args.video_path, json_tmp_dir, '--video', write_images=processed_tmp_dir)
 
 # load model from path
 model = mutils.load_model_from_json(args.model_path, args.weight_path)
