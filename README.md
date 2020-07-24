@@ -126,13 +126,13 @@ represented one row. Each row then represented a frame. The sampling size of the
 
 |Video Daten                          |RGB Image                            | Frames | Joints |
 |-------------------------------------|:-----------------------------------:|:------:|:------:|
-|![](doc/images/exampleMotion.gif)      |![](doc/images/customDataExanoke.jpg) |  60    |   25   |
+|![](doc/images/exampleMotion.gif)    |![](doc/images/customDataExample.jpg)|  60    |   25   |
 
 ## Comparison of HMDB51 and custom dataset
 
 |Custom Data                          |HMDB51 Data                                 |
 |-------------------------------------|:------------------------------------------:|
-|![](doc/images/customDataExample.jpg)  |![](doc/images/hmdb51GoodDataExample.jpg)     |
+|![](doc/images/customDataExample.jpg)|![](doc/images/hmdb51GoodDataExample.jpg)   |
 
 I just want to make a note of the difference between the custom data I generated and the data taken from HMDB51.
 The motion images are extracted using the same method. The data I generated will have the whole skeleton captured
@@ -302,9 +302,9 @@ Trainable params: 260,357
 Non-trainable params: 448
 __________________________________________________________________________________________________
 |    classes   |                                                                                     |                                                                          | 
-|       |------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| stand|walk|sit|punch|wave      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss.png)|
-| stand|walk|sit      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy_cl3.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss_cl3.png)|
+|              |------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| stand/walk/sit/punch/wave      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss.png)|
+| stand/walk/sit      |![Abbildung 6: Model Accuracy](doc/images/TwoStreamNet_modelAccuracy_cl3.png) | ![Abbildung 7: Model Accuracy](doc/images/TwoStreamNet_modelLoss_cl3.png)|
 
 # Results from Training the Network
 
